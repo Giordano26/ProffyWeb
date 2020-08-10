@@ -1,4 +1,5 @@
 import React, { useState, FormEvent } from 'react';
+import {useHistory} from 'react-router-dom'
 
 import api from '../../services/api';
 
@@ -12,7 +13,8 @@ import warningIcon from '../../assets/images/icons/warning.svg';
 import './styles.css';
 
 export default function TeacherForm() {
-
+  const history = useHistory();
+  
   const [name, setName] = useState('');
   const [avatar, setAvatar] = useState('');
   const [wpp, setwpp] = useState('');
@@ -41,6 +43,8 @@ export default function TeacherForm() {
       schedule: scheduleItems,
     }).then(() => {
         alert('Cadastro realizado com sucesso!')
+
+       history.push('/');
     }).catch(() => {
         alert('Erro no cadastro!')
     })
@@ -84,7 +88,7 @@ export default function TeacherForm() {
             />
             <Input
               name="wpp"
-              label="wpp"
+              label="WhatsApp"
               value={wpp}
               onChange={(e) => setwpp(e.target.value)}
             />
